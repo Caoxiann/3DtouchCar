@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用力按我试试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2P-I0-MXa">
+                                <rect key="frame" x="163" y="162" width="341" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Nut-hG-xhi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我要告诉你们一点人生经验" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLA-13-M5i">
+                                <rect key="frame" x="163" y="233" width="341" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJn-Hp-YJs">
+                                <rect key="frame" x="310" y="82" width="46" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="7eO-mo-NtA"/>
+                                </constraints>
+                                <state key="normal" title="扫一扫"/>
+                                <connections>
+                                    <action selector="startClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g4Z-la-s8V"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="啦啦啦..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iVa-4S-Gaf">
+                                <rect key="frame" x="0.0" y="20" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="5GD-Fz-6Ia"/>
+                                    <constraint firstAttribute="height" constant="128" id="6x5-Rp-hsc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oF-Yi-CUP">
+                                <rect key="frame" x="558" y="82" width="46" height="50"/>
+                                <state key="normal" title="换挡"/>
+                                <connections>
+                                    <action selector="switchDirection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GfB-Ru-QWL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="R2P-I0-MXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1Kd-3x-SkT"/>
+                            <constraint firstItem="0oF-Yi-CUP" firstAttribute="centerY" secondItem="HJn-Hp-YJs" secondAttribute="centerY" id="1OU-E6-9xN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qLA-13-M5i" secondAttribute="bottom" constant="92" id="1oZ-MN-zlr"/>
+                            <constraint firstItem="R2P-I0-MXa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="A8H-fm-oCt"/>
+                            <constraint firstItem="R2P-I0-MXa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="148:667" constant="257.79160419790105" id="FyO-2B-o60"/>
+                            <constraint firstItem="iVa-4S-Gaf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Odh-Iw-Wb9"/>
+                            <constraint firstItem="qLA-13-M5i" firstAttribute="width" secondItem="R2P-I0-MXa" secondAttribute="width" id="ShW-N0-0Be"/>
+                            <constraint firstItem="0oF-Yi-CUP" firstAttribute="leading" secondItem="HJn-Hp-YJs" secondAttribute="trailing" constant="202" id="TmR-va-C2t"/>
+                            <constraint firstItem="0oF-Yi-CUP" firstAttribute="height" secondItem="HJn-Hp-YJs" secondAttribute="height" id="Vrs-ZA-23s"/>
+                            <constraint firstItem="0oF-Yi-CUP" firstAttribute="width" secondItem="HJn-Hp-YJs" secondAttribute="width" id="Yfd-gM-nwq"/>
+                            <constraint firstItem="iVa-4S-Gaf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bfz-WP-uEp"/>
+                            <constraint firstItem="HJn-Hp-YJs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gL5-5A-aVu"/>
+                            <constraint firstItem="HJn-Hp-YJs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="62" id="hlI-7c-7m7"/>
+                            <constraint firstItem="HJn-Hp-YJs" firstAttribute="height" secondItem="R2P-I0-MXa" secondAttribute="height" id="kiz-To-orN"/>
+                            <constraint firstItem="qLA-13-M5i" firstAttribute="centerX" secondItem="R2P-I0-MXa" secondAttribute="centerX" id="l2b-TY-LeV"/>
+                            <constraint firstItem="qLA-13-M5i" firstAttribute="height" secondItem="R2P-I0-MXa" secondAttribute="height" id="m0j-Kz-pAb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="log" destination="iVa-4S-Gaf" id="N4d-Ke-5Yg"/>
+                        <outlet property="pressureLabel" destination="R2P-I0-MXa" id="9w0-KM-Ugu"/>
+                        <outlet property="rotationLabel" destination="qLA-13-M5i" id="CQq-KR-Qz6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.39130434782609" y="122.40000000000001"/>
+        </scene>
+    </scenes>
+</document>

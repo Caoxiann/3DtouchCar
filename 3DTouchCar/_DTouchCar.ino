@@ -64,22 +64,27 @@ AF_DCMotor motorLF(3);//左前轮
 AF_DCMotor motorLB(4);//左后轮
 
 int carSpeed; //小车的速度
-int status;//小车状态
+long status;//小车状态
+int changed;
 float RFzw=1,RBzw=1,LFzw=0.9,LBzw=0.9;//四个轮胎的速度系数
-float trunRatio;//转向系数
-
-void goBackward(int speed);
-void trun(int angle);
+String readStr;
+String pressureStr;
+String pitchStr;
+String statusStr;
+float pressure,pitch;
+void goBackward(float speed);
+void trun(float angle);
 void stop();
-void goForward(int speed);
+void goForward(float speed);
 void setSpeed();
 void turnAround(int direction);//0向左转，1向右转
+
 // Add setup code
 void setup()
 {
     
     Serial.begin(9600);
-    
+    changed=0;
     // turn on motor
     carSpeed=150;
     status=0;
@@ -91,74 +96,78 @@ void setup()
 void loop()
 {
     if (Serial.available()) {
-        status=Serial.read();
-        status=status-'0';
-        Serial.print("status:");
+        readStr=Serial.readStringUntil('c');
+        pressureStr=readStr.substring(0, 5);
+        pitchStr=readStr.substring(7, 12);
+        statusStr=readStr.substring(14, 15);
+        
+        pressure=pressureStr.toFloat();
+        pitch=pitchStr.toFloat();
+        status=statusStr.toInt();
+        Serial.print("read:");
+        Serial.print(readStr);
+        Serial.print("\tpressure:");
+        Serial.print(pressure);
+        Serial.print("\tpitch:");
+        Serial.print(pitch);
+        Serial.print("\tstatus:");
         Serial.print(status);
         Serial.print("\n");
+        changed=0;
+    }else{
+        changed++;
     }
-    switch (status) {
-        case 0:
-            stop();
-            break;
-        case 1:
-            goForward(100);
-            break;
-        case 2:
-            goBackward(100);
-            break;
-        case 3:
-            trun(75);
-            break;
-        case 4:
-            trun(-75);
-            break;
-        case 5:
-            turnAround(0);
-            break;
-        case 6:
-            turnAround(1);
-            break;
-        default:
-            break;
+    if (changed>=300){
+        if (changed>=1000) {
+            changed=300;
+        }
+        stop();
+    }else{
+        trun(pitch);
+        if (status==0) {
+            goForward(pressure);
+        }else{
+            goBackward(pressure);
+        }
+        
     }
-
+    
+    
 
 }
 
-void trun(int angle){
+void trun(float angle){
     RFzw=1;
     RBzw=1;
-    LFzw=1;
-    LBzw=1;
+    LFzw=0.9;
+    LBzw=0.9;
     if (angle>=0) {
-        trunRatio=1-angle/90.0;
-        RBzw=trunRatio*RBzw;
-        RFzw=trunRatio*RFzw;
+        if (angle>=1) {
+            angle=1;
+        }
+        angle=1-angle;
+        LBzw=angle*LBzw;
+        LFzw=angle*LFzw;
         
     }else{
-        trunRatio=1+angle/90.0;
-        LBzw=trunRatio*LBzw;
-        LFzw=trunRatio*LFzw;
+        if (angle<=-1) {
+            angle=-1;
+        }
+        angle=1+angle;
+        RBzw=angle*RBzw;
+        RFzw=angle*RFzw;
     }
-    
-    setSpeed();
     
 }
 
-void goBackward(int speed){
-    carSpeed=speed;
-    
+void goBackward(float speed){
+    speed=speed/6.666;
+    carSpeed=speed*255;
     motorRB.run(BACKWARD);
     motorRF.run(BACKWARD);
     motorLB.run(BACKWARD);
     motorLF.run(BACKWARD);
-    
-    RFzw=0.9;
-    RBzw=0.9;
-    LFzw=1;
-    LBzw=1;
-    
+
     setSpeed();
 }
 
@@ -169,18 +178,14 @@ void stop(){
     motorLF.run(RELEASE);
 }
 
-void goForward(int speed){
-    
-    carSpeed=speed;
+void goForward(float speed){
+    speed=speed/6.666;
+    carSpeed=speed*255;
     motorRB.run(FORWARD);
     motorRF.run(FORWARD);
     motorLB.run(FORWARD);
     motorLF.run(FORWARD);
     
-    RFzw=1;
-    RBzw=1;
-    LFzw=0.9;
-    LBzw=0.9;
     setSpeed();
 }
 
