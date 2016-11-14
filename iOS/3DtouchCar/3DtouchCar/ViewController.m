@@ -31,6 +31,7 @@ int count=0;
     if (!self.manager.isGyroAvailable) {
         return;
     }
+    self.log.layoutManager.allowsNonContiguousLayout=false;
     self.timer=[NSTimer scheduledTimerWithTimeInterval:0.15 repeats:YES block:^(NSTimer *timer) {
         if (self.pressure>=0.8&&[self.peripherals lastObject]) {
             [self writePressure:self.pressure];
@@ -94,6 +95,9 @@ int count=0;
 
 -(void)writeToLog:(NSString *)info{
     self.log.text=[NSString stringWithFormat:@"%@\r\n%@",self.log.text,info];
+    NSInteger strLength=[self.log.text length];
+    [self.log scrollRangeToVisible:NSMakeRange(0, strLength)];
+    
 }
 
 
